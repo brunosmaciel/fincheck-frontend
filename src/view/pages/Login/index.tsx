@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Link } from 'react-router-dom';
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+import { useLoginController } from './useLoginController';
 
 export function Login() {
+  const { handleSubmit, register, errors, isLoading } = useLoginController();
+
   return (
     <div className="">
       <header className=" gap-4 flex flex-col items-center text-center">
@@ -14,7 +17,7 @@ export function Login() {
             Novo por aqui?
           </span>
           <Link
-            to={"/register"}
+            to={'/register'}
             className="text-teal-900 tracking-[-0.5px] font-medium"
           >
             Crie uma conta
@@ -22,17 +25,31 @@ export function Login() {
         </p>
       </header>
 
-      <form action="/" className="mt-[60px] flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit}
+        action="/"
+        className="mt-[60px] flex flex-col gap-4"
+      >
         <Input
           autoComplete="off"
           type="email"
           placeholder="E-mail"
-          name="email"
+          {...register('email')}
+          error={errors?.email?.message}
         />
-        <Input type="password" placeholder="Senha" name="password" />
+        <Input
+          type="password"
+          placeholder="Senha"
+          {...register('password')}
+          error={errors?.password?.message}
+        />
 
-        <Button>Entrar</Button>
+        <Button isLoading={isLoading} type="submit" className="mt-2">
+          Entrar
+        </Button>
       </form>
     </div>
   );
 }
+
+Input.displayName = 'Input';

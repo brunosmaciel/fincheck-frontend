@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Link } from 'react-router-dom';
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+import { useRegisterController } from './useRegisterController';
 
 export function Register() {
+  const { handleSubmit, errors, register, isLoading } = useRegisterController();
   return (
     <div className="">
       <header className=" gap-4 flex flex-col items-center text-center">
@@ -14,7 +16,7 @@ export function Register() {
             Já possui uma conta?
           </span>
           <Link
-            to={"/login"}
+            to={'/login'}
             className="text-teal-900 tracking-[-0.5px] font-medium"
           >
             Fazer login
@@ -22,17 +24,33 @@ export function Register() {
         </p>
       </header>
 
-      <form action="/" className="mt-[60px] flex flex-col gap-4">
-        <Input autoComplete="off" type="text" placeholder="Nome" name="nome" />
+      <form
+        action="/"
+        onSubmit={handleSubmit}
+        className="mt-[60px] flex flex-col gap-4"
+      >
+        <Input
+          autoComplete="off"
+          type="text"
+          placeholder="Nome"
+          error={errors.name?.message}
+          {...register('name')}
+        />
         <Input
           autoComplete="off"
           type="email"
           placeholder="E-mail"
-          name="email"
+          error={errors.email?.message}
+          {...register('email')}
         />
-        <Input type="password" placeholder="Senha" name="password" />
+        <Input
+          error={errors.password?.message}
+          type="password"
+          placeholder="Senha"
+          {...register('password')}
+        />
 
-        <Button>Criar conta</Button>
+        <Button isLoading={isLoading}>Criar conta</Button>
       </form>
     </div>
   );
