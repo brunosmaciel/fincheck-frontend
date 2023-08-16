@@ -1,5 +1,4 @@
 import { Logo } from './Logo';
-import { Spinner } from './Spinner';
 import { Transition } from '@headlessui/react';
 interface IPageLoaderProps {
   isLoading: boolean;
