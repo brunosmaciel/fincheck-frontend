@@ -5,6 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { authService } from '../../../app/services/authService';
 import { ISignupParams } from '../../../app/services/authService/signup';
 import { toast } from 'react-hot-toast';
+import { useAuth } from '../../../app/contexts/AuthContext';
 
 const schema = z.object({
   name: z.string().nonempty('Nome é obrigatorio'),
@@ -26,6 +27,7 @@ export function useRegisterController() {
   } = useForm<IRegisterInputs>({
     resolver: zodResolver(schema),
   });
+  const { signin } = useAuth();
   const { isLoading, mutateAsync } = useMutation({
     mutationFn: async (data: ISignupParams) => {
       const { accessToken } = await authService.signup(data);
@@ -37,7 +39,7 @@ export function useRegisterController() {
     try {
       const accessToken = await mutateAsync(inputData);
 
-      console.log(accessToken);
+      signin(accessToken);
     } catch (error) {
       toast.error('Ocorreu um erro ao criar sua conta');
     }

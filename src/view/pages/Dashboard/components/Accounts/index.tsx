@@ -10,7 +10,6 @@ interface IAccountsProps {}
 
 export function Accounts({}: IAccountsProps) {
   const { setSliderState, sliderState, windowWidth } = useAccountsController();
-  console.log(windowWidth);
   return (
     <div className="flex flex-col text-white bg-teal-900 rounded-2xl h-full w-full lg:p-10 md:p-10 px-4 py-8">
       <div>
