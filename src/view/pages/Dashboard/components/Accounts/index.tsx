@@ -68,8 +68,8 @@ export function Accounts({}: IAccountsProps) {
               <SwiperSlide>
                 <AccountCard
                   type="CHECKING"
-                  balance={1000.23}
-                  color={'#7950F2'}
+                  balance={23.53}
+                  color={'#fff'}
                   name={'Nubank'}
                 />
               </SwiperSlide>

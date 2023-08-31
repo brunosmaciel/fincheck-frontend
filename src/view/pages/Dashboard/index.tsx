@@ -1,7 +1,7 @@
 import { Logo } from '../../components/Logo';
 import { UserMenu } from '../../components/UserMenu';
 import { Accounts } from './components/Accounts';
-import { Transactions } from './components/Transactions';
+import { Transactions } from './components/Transactions/Transactions';
 
 export function Dashboard() {
   return (
@@ -10,7 +10,7 @@ export function Dashboard() {
         <Logo className="h-6 text-teal-900" />
         <UserMenu />
       </header>
-      <main className="flex-1 flex-col flex md:flex-row gap-4 text-gray-900">
+      <main className="flex-1 flex-col flex md:flex-row gap-4 text-gray-900 max-h-full ">
         <div className="w-full lg:w-1/2 ">
           <Accounts />
         </div>
