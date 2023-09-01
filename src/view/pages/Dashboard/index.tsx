@@ -2,7 +2,7 @@ import { Logo } from '../../components/Logo';
 import { UserMenu } from '../../components/UserMenu';
 import { DashboardProvider } from './DashboardContext';
 import { Accounts } from './components/Accounts';
-import { Transactions } from './components/Transactions/Transactions';
+import { Transactions } from './components/Transactions/';
 
 export function Dashboard() {
   return (
@@ -13,10 +13,10 @@ export function Dashboard() {
           <UserMenu />
         </header>
         <main className="flex-1 flex-col flex md:flex-row gap-4 text-gray-900 max-h-full ">
-          <div className="w-full lg:w-1/2 ">
+          <div className="w-full lg:w-1/2 md:min-w-[50%]">
             <Accounts />
           </div>
-          <div className="w-full lg:w-1/2 ">
+          <div className="w-full lg:w-1/2 md:min-w-[50%] ">
             <Transactions />
           </div>
         </main>
