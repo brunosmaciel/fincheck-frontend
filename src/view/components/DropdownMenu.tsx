@@ -4,6 +4,8 @@ import { cn } from '../../app/utils/cn';
 interface IDropdownMenuProps {
   children: React.ReactNode;
   className?: string;
+  onSelect?(): void;
+  side?: string;
 }
 
 export function DropdownMenuRoot({ children }: IDropdownMenuProps) {
@@ -16,6 +18,7 @@ export function DropdownMenuContent({
   return (
     <RdxDropdownMenu.Portal>
       <RdxDropdownMenu.Content
+        side="bottom"
         className={cn(
           'p-2 rounded-2xl bg-white  space-y-2 drop-shadow-[0px_11px_20px_0px rgba(0,0,0,0.10)]',
           className,
@@ -26,11 +29,16 @@ export function DropdownMenuContent({
     </RdxDropdownMenu.Portal>
   );
 }
-export function DropdownMenuItem({ children, className }: IDropdownMenuProps) {
+export function DropdownMenuItem({
+  children,
+  className,
+  onSelect,
+}: IDropdownMenuProps) {
   return (
     <RdxDropdownMenu.Item
+      onSelect={onSelect}
       className={cn(
-        'p-4 transition-colors text-sm text-gray-800 min-h-[48px] hover:bg-gray-50 outline-none flex items-center',
+        'cursor-pointer transition-colors px-4 py-2 text-sm text-gray-800 min-h-[40px] data-[highlighted]:bg-gray-50 outline-none flex items-center',
         className,
       )}
     >

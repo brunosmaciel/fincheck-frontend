@@ -1,6 +1,4 @@
 import emptyStateIllustration from '../../../../../app/assets/empty-state.svg';
-import { ChevronDownIcon } from '@radix-ui/react-icons';
-import { TransactionsIcon } from '../../../../components/icons/TransactionsIcon';
 import { FilterIcon } from '../../../../components/icons/FilterIcon';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { MONTHS } from '../../../../../app/config/constants';
@@ -11,6 +9,7 @@ import { CategoryIcon } from '../../../../components/icons/categories/CategoryIc
 import { useTransactionsController } from './useTransactionsController';
 import { cn } from '../../../../../app/utils/cn';
 import { Spinner } from '../../../../components/Spinner';
+import { TransactionTypeDropdown } from './TransactionTypeDropdown';
 
 interface ITransactionsProps {}
 
@@ -30,13 +29,7 @@ export function Transactions({}: ITransactionsProps) {
         <>
           <header className="">
             <div className="flex items-center justify-between ">
-              <button className="flex items-center gap-2">
-                <TransactionsIcon />
-                <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
-                  Transações
-                </span>
-                <ChevronDownIcon className="text-gray-900" />
-              </button>
+              <TransactionTypeDropdown />
 
               <button>
                 <FilterIcon />
@@ -85,7 +78,10 @@ export function Transactions({}: ITransactionsProps) {
             ) : (
               <>
                 {transactions.map(({ date, name, type, value }) => (
-                  <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
+                  <div
+                    key={name}
+                    className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4"
+                  >
                     <div className="flex items-center gap-3">
                       <CategoryIcon type={type as 'income' | 'expense'} />
                       <div>
