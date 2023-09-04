@@ -57,7 +57,7 @@ export function Accounts({}: IAccountsProps) {
                     Minhas contas
                   </strong>
                 </div>
-                <button className="mt-4 h-52 border-dashed border-2 border-teal-600 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
+                <button className=" hover:bg-teal-950/10 transition-all mt-4 h-52 border-dashed border-2 border-teal-600 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
                   <div className="w-11 h-11 rounded-full border-2 border-dashed border-white flex items-center justify-center">
                     <PlusIcon className="h-6 w-6" />
                   </div>
